@@ -40,42 +40,103 @@ nav{
     right: 0%;
 }
 
-body{
-    background-color: #0558EE; 
-}
+/* btn*/
+
 
 .input-arriba {
     position: absolute; /* Coloca el input de forma absoluta dentro del contenedor */
     top: 200px; /* Distancia desde la parte superior del contenedor */
     left: 50%; /* Centrar horizontalmente */
     transform: translateX(-50%); /* Ajustar para centrar horizontalmente */
-}
+  }
+
+  .input-arriba input[type="text"] {
+    padding: 10px;
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+
+  .input-arriba button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0558EE       ;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .input-arriba button:hover {
+    background-color: #0056b3;
+  }
+/*Boton compartir*/
 
 /*grid*/
 
+html,
+body {
+	height: 100%;
 
-.column {
-    display: flex;
-    flex-direction: column; /* Apilar elementos verticalmente */
-    gap: 20px; /* Espacio entre los elementos */
-    max-width: 300px; /* Ancho máximo de la columna */
-    margin: 0 auto; /* Centrar la columna horizontalmente */
-    border: 1px solid #ccc;
 }
 
-.item {
-    border: 1px solid #ccc; /* Borde para cada elemento */
-    padding: 20px; /* Espaciado interno */
-    text-align: center; /* Centrar el contenido */
-    background-color: #ccc;
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
 }
 
-.item a {
-    display: block; /* Convertir el enlace en un bloque para ocupar todo el ancho */
-    text-decoration: none; /* Quitar la decoración de texto predeterminada */
-    color: #333; /* Color del texto del enlace */
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-.item p {
-    margin-top: 10px; /* Espacio entre el enlace y el nombre */
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff; 
 }
+
+th {
+	text-align: left;
+    
+}
+
+thead {
+	th {
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+
