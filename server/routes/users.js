@@ -13,9 +13,16 @@ router.post('/create', function(req, res, next){
     console.log('req.body', req.body)
     const user_role = 'development';
 
-    connection.query('INSERT INTO user (username, email, password) VALUES ("${username}","${email}","${password}")', function(error, results, fields){
+    const data = {
+      username: req.body?.username,
+      email: req.body?.email,
+      password: req.body?.password
+    }
+
+    connection.query(`INSERT INTO user (username, email, password) VALUES ("${data.username}", "${data.email}", "${data.password}")`, function(error, results, fields){
       if(error){
       throw error;
+
       
       console. log('The solution is: ', results[0])
       console. log('fields: ', fields)
@@ -30,7 +37,7 @@ router.post('/create', function(req, res, next){
   }catch(e){
     return res.status(500).json({
       'error': true,
-      'message': user_role === 'development' ? e : 'Ha ocurrido un error.'
+      'message':'Ha ocurrido un error.'
     });
   }
   
