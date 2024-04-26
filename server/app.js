@@ -11,19 +11,6 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 
-var app = express();
-var mysql = require('mysql');
-
-
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: "",
-  database: 'wb',
-});
-
-connection.connect();
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 

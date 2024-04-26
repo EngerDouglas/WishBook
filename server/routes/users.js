@@ -1,6 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
+var mysql = require('mysql');
 
+
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: "",
+  database: 'wb',
+});
+
+connection.connect();
 
 
 /* GET users listing. */
@@ -8,31 +19,40 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/login', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
 router.post('/create', function(req, res, next){
   try{
     console.log('req.body', req.body)
-    const user_role = 'development';
+    
+    if(req.body.username && req.body.email && req.body.password){
 
-    const data = {
-      username: req.body?.username,
-      email: req.body?.email,
-      password: req.body?.password
-    }
-
-    connection.query(`INSERT INTO user (username, email, password) VALUES ("${data.username}", "${data.email}", "${data.password}")`, function(error, results, fields){
-      if(error){
-      throw error;
-
-      
-      console. log('The solution is: ', results[0])
-      console. log('fields: ', fields)
+      const data = {
+        username: req.body?.username,
+        email: req.body?.email,
+        password: req.body?.password
       }
-    });
+  
+  
+      connection.query(`INSERT INTO user (id , username, email, password) VALUES ('NULL','${data.username}', '${data.email}', '${data.password}')`, function(error, results, fields){
+        if(error){
+        throw error;
+  
+        
+        console. log('The solution is: ', results[0])
+        console. log('fields: ', fields)
+        }
+      });
+      
+      return res.json({
+        'error': false,
+        'message': 'El usuario ha sido creado correctamente'
+      });
 
-    return res.json({
-      'error': false,
-      'message': 'El usuario ha sido creado correctamente'
-    });
+    }
+   
 
   }catch(e){
     return res.status(500).json({
@@ -63,6 +83,6 @@ router.get('/list', function(req, res, next){
     }
   
     return res.json(users);
-  });
+});
 
 module.exports = router;
